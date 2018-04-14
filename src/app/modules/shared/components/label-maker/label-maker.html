@@ -1,0 +1,75 @@
+<h2>Shipping Label Maker </h2>
+<form-wizard>
+  <wizard-step [title]="'Sender'">
+    <app-address [address]="shippingInfo.from" [name]="'Sender'"> </app-address>  
+  </wizard-step>
+  <wizard-step [title]="'Receiver'" >
+    <app-address [address]="shippingInfo.to" [name]="'Receiver'"> </app-address>
+  </wizard-step>
+  <wizard-step [title]="'Weight'">
+    <app-weight [(shippingInfo)]="shippingInfo"></app-weight>
+  </wizard-step>
+  <wizard-step [title]="'Shipping Option'">
+    <app-shipping-option [shippingInfo]="shippingInfo"> </app-shipping-option>
+  </wizard-step>
+  <wizard-step [title]="'Confirm'" (onComplete)="onComplete($event)">
+  </wizard-step>
+</form-wizard>
+
+<div class="row" *ngIf="completed">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body col-sm-12">
+        <h3>Sender Address</h3>
+         <h5> Name</h5>
+        <p class="card-text">{{shippingInfo.from.name}}</p>
+             <h5> Street</h5>
+        <p class="card-text">{{shippingInfo.from.street}}</p>
+        
+      
+         <h5> City</h5>
+        <p class="card-text">{{shippingInfo.from.city}}</p>
+          <h5> State</h5>
+        <p class="card-text">{{shippingInfo.from.state}}</p>
+          <h5> Zip </h5>
+        <p class="card-text">{{shippingInfo.from.zip}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body col-sm-12">
+        <h3>Receiver Address</h3>
+         <h5> Name</h5>
+        <p class="card-text">{{shippingInfo.to.name}}</p>
+             <h5> Street</h5>
+        <p class="card-text">{{shippingInfo.to.street}}</p>
+        
+      
+         <h5> City</h5>
+        <p class="card-text">{{shippingInfo.to.city}}</p>
+          <h5> State</h5>
+        <p class="card-text">{{shippingInfo.to.state}}</p>
+          <h5> Zip </h5>
+        <p class="card-text">{{shippingInfo.to.zip}}</p>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body col-sm-12">
+        <h3>Weight</h3>
+        <p class="card-text">{{shippingInfo.weight}}</p>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body col-sm-12">
+        <h3>Shipping Option</h3>
+        <p class="card-text" *ngIf="shippingInfo.shippingOption === 1">Ground</p>
+        <p class="card-text" *ngIf="shippingInfo.shippingOption === 2">Priority</p>
+      </div>
+    </div>
+  </div>
+</div>

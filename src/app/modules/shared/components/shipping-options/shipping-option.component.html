@@ -1,0 +1,4 @@
+<h2> Shipping Options </h2>
+<select [(ngModel)]="shippingInfo.shippingOption">
+     <option *ngFor="let item of shippingOptions | keys" [value]="item.key"  >{{item.value}}</option>
+</select>
